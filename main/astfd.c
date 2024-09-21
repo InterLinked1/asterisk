@@ -280,7 +280,8 @@ int __ast_fdleak_fclose(FILE *ptr)
 {
 	int fd, res;
 	if (!ptr) {
-		return fclose(ptr);
+		errno = EBADF;
+		return -1;
 	}
 
 	fd = fileno(ptr);
